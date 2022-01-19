@@ -78,20 +78,30 @@ function addListItems(){
     }
 }
 
-// Add class 'active' to section when near top of viewport
+// Add class 'active' to section when near top of viewport and also highlight it's active section in the Navbar
 function addHighlight(){
     let sections = document.querySelectorAll('section');
-    sections.forEach(section =>{
+    let myNavBar= document.querySelectorAll('li');
+    for (section of sections){
          const sectionTop = section.getBoundingClientRect().top;
-         if(sectionTop > 0 && sectionTop <= 450){
+         if(sectionTop > 0 && sectionTop <= 300){
           section.classList.add("your-active-class");
+          for (item of myNavBar){
+              
+              if (item.firstElementChild.getAttribute('href')==='#'+section.id){
+                  item.style.backgroundColor = "blue";
+              }
+              else{
+                item.style.backgroundColor = "white";
+              }
+          }
         }else{
             section.classList.remove("your-active-class");
+            
        }
-    })
+    }
 }
 
-// Scroll to anchor ID using scrollTO event
 
 
 /**
